@@ -3,14 +3,14 @@ package com.solarlab.project.user;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class user {
+public class User {
     private Long id;
     private String name;
     private String email;
     private int ads;
     private int age;
 
-    public user(
+    public User(
             Long id,
             String name,
             String email,
@@ -23,7 +23,7 @@ public class user {
         this.age = age;
     }
 
-    public user(String name,
+    public User(String name,
                 String email,
                 int ads,
                 int age) {
