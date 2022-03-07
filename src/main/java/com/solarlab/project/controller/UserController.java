@@ -1,7 +1,7 @@
 package com.solarlab.project.controller;
 
 import com.solarlab.project.service.UsersService;
-import com.solarlab.project.user.User;
+import com.solarlab.project.user.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUser() {
+    public List<Users> getUser() {
         return usersService.getUser();
     }
 }

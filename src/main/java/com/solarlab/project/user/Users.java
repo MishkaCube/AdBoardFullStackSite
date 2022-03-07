@@ -2,14 +2,25 @@ package com.solarlab.project.user;
 
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
 @RequiredArgsConstructor
-public class User {
+@Table
+public class Users {
+    @Id
+    @SequenceGenerator(
+            name = "users_sequence",
+            sequenceName = "users_sequence",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
     private Long id;
     private String name;
     private String email;
     private int ads;
     private int age;
 
+    /*
     public User(
             Long id,
             String name,
@@ -23,10 +34,12 @@ public class User {
         this.age = age;
     }
 
-    public User(String name,
-                String email,
-                int ads,
-                int age) {
+     */
+
+    public Users(String name,
+                 String email,
+                 int ads,
+                 int age) {
         this.name = name;
         this.email = email;
         this.ads = ads;
