@@ -15,26 +15,11 @@ public class Users {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
     private Long id;
+
     private String name;
     private String email;
     private int ads;
     private int age;
-
-    /*
-    public User(
-            Long id,
-            String name,
-            String email,
-            int ads,
-            int age) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.ads = ads;
-        this.age = age;
-    }
-
-     */
 
     public Users(String name,
                  String email,
