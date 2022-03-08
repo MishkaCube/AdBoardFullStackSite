@@ -3,6 +3,8 @@ package com.solarlab.project.user;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @RequiredArgsConstructor
@@ -19,16 +21,18 @@ public class Users {
     private String name;
     private String email;
     private int ads;
+    private LocalDate dob;
+    @Transient
     private int age;
 
     public Users(String name,
                  String email,
                  int ads,
-                 int age) {
+                 LocalDate dob) {
         this.name = name;
         this.email = email;
         this.ads = ads;
-        this.age = age;
+        this.dob = dob;
     }
 
     public Long getId() {
@@ -64,11 +68,20 @@ public class Users {
     }
 
     public int getAge() {
-        return age;
+
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Configuration
@@ -17,11 +18,11 @@ public class UsersConfig {
             Users michael = new Users("Michael",
                     "michael.gmail.com",
                     12,
-                    15);
+                    LocalDate.of(2004, 10, 14));
             Users michaela = new Users("Michaela",
                     "michaela.gmail.com",
                     0,
-                    17);
+                    LocalDate.of(2004, 01, 15));
             repository.saveAll(List.of(michael, michaela));
 
         };
