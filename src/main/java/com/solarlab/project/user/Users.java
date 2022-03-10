@@ -35,6 +35,8 @@ public class Users {
         this.dob = dob;
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -67,10 +69,7 @@ public class Users {
         this.ads = ads;
     }
 
-    public int getAge() {
-
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
+    public int getAge() { return Period.between(this.dob, LocalDate.now()).getYears(); }
 
     public void setAge(int age) {
         this.age = age;
