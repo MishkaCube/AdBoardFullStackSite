@@ -30,9 +30,8 @@ public class UserController {
         return ResponseEntity.ok(usersService.update(userId, request));
     }
 
-    @DeleteMapping( value = "/v1/deleteuser/{taskId}"
-    )
-    public ResponseEntity<Void> deleteTask(@PathVariable("taskId") Long userId) {
+    @DeleteMapping( value = "/v1/deleteuser/{userId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable("userId") Long userId) {
         usersService.deleteById(userId);
         return ResponseEntity.noContent().build();
     }
