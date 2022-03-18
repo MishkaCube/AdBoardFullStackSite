@@ -1,40 +1,46 @@
 package com.solarlab.project.controller;
 
 import com.solarlab.project.service.UsersService;
-import com.solarlab.project.user.Users;
+import com.solarlab.project.entity.User;
+import com.solarlab.project.user.UserCreateDto;
+import com.solarlab.project.user.UserDto;
+import com.solarlab.project.user.UsersUpdate;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping
 @RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
     private final UsersService usersService;
 
-    @GetMapping("/getuser")
-    public List<Users> getUser() {
-        return usersService.getUser();
+    @GetMapping("v1/getuser")
+    public ResponseEntity<Iterable<User>> getTasks(
+            @RequestParam(value = "limit", required = false) Integer limit) {
+        return ResponseEntity.ok(usersService.getUser());
     }
 
-    @PostMapping(path = "/adduser")
-    public void registerNewUser(@RequestBody Users users) {
-        usersService.addUser(users);
+    @PutMapping(path = "v1/insertuser/{userId}")
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable("userId") Long userId ,
+            @RequestBody(required = false) UsersUpdate request) {
+        return ResponseEntity.ok(usersService.update(userId, request));
     }
 
-    @DeleteMapping(path = "{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-        usersService.deleteUserById(id);
+    @DeleteMapping( value = "/v1/deleteuser/{taskId}"
+    )
+    public ResponseEntity<Void> deleteTask(@PathVariable("taskId") Long userId) {
+        usersService.deleteById(userId);
+        return ResponseEntity.noContent().build();
     }
 
-    /*
-    @PutMapping(path = "/insertuser/{id}")
-    public void putUser(@PathVariable("id"), Long id) {
-        usersService.putUser(id);
+    @PostMapping(value = "/v1/adduser")
+    public ResponseEntity<UserDto> createTask(@RequestBody UserCreateDto request) {
+        return new ResponseEntity<>(usersService.create(request), HttpStatus.CREATED);
     }
 
-     */
+
 }

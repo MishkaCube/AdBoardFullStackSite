@@ -1,12 +1,10 @@
 package com.solarlab.project.repository;
 
-import com.solarlab.project.user.Users;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import com.solarlab.project.entity.User;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface UsersRepository extends JpaRepository<Users, Long> {
-
-    Optional<Users> findByEmail(String email);
+public interface UsersRepository extends PagingAndSortingRepository<User, Long> {
+    Optional<User> findByEmail(String email);
 }

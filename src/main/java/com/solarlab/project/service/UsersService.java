@@ -1,46 +1,49 @@
 package com.solarlab.project.service;
 
+import com.solarlab.project.entity.User;
+import com.solarlab.project.mapper.UsersMapper;
 import com.solarlab.project.repository.UsersRepository;
-import com.solarlab.project.user.Users;
+import com.solarlab.project.user.UserCreateDto;
+import com.solarlab.project.user.UserDto;
+import com.solarlab.project.user.UsersUpdate;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
+@Data
 public class UsersService {
+
     private final UsersRepository usersRepository;
+    private final UsersMapper usersMapper;
 
-    public List<Users> getUser() { return usersRepository.findAll(); }
-
-    public void addUser(Users users) {
-        Optional<Users> usersOptional = usersRepository.findByEmail(users.getEmail());
-        if (usersOptional.isPresent()) {
-            throw new IllegalStateException("EMail is already exists.");
-        }
-        usersRepository.save(users);
+    public UsersService(UsersRepository usersRepository, UsersMapper usersMapper) {
+        this.usersRepository = usersRepository;
+        this.usersMapper = usersMapper;
     }
 
-    public void deleteUserById(Long id) {
-        boolean exists = usersRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("This user doesn't exists.");
-        } else {
-            usersRepository.deleteById(id);
-        }
+    public Iterable<User> getUser() { return usersRepository.findAll(); }
+
+    public UserDto create(UserCreateDto request) {
+        User user = usersMapper.toUser(request);
+        usersRepository.save(user);
+        return usersMapper.userToUserDto(user);
     }
 
-    @Transactional
-    public void putUser(Long id) {
-        boolean exists = usersRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("This user doesn't exists");
-        } else {
-            return;
-        }
+    public void deleteById(Long userId) {
+        usersRepository.deleteById(userId);
     }
+
+    public UserDto update(Long userId, UsersUpdate request) {
+        User user = usersMapper.taskUpdateRequest(request, userId);
+        usersRepository.save(user);
+        return usersMapper.userToUserDto(user);
+    }
+
+
 }
