@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Users")
@@ -21,6 +22,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
     private Long id;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "name")
     private String name;
 
@@ -31,17 +35,16 @@ public class User {
     @Column(name = "user_email")
     private String email;
 
-    @Column(name = "user_ads")
-    private int ads;
-
     @Column(name = "date_of_birth")
     private LocalDate dob;
 
-    @Column(name = "user_password")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "age")
     private int age;
 
+
+    //private boolean enabled = true;
 
 }

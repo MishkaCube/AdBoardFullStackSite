@@ -2,11 +2,16 @@ package com.solarlab.project.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+
+import javax.sql.DataSource;
+
 
 @Configuration
 @EnableAuthorizationServer
@@ -14,6 +19,19 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        endpoints
+                .authenticationManager(authenticationManager);
+    }
+
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -25,6 +43,8 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        //сclients.jdbc(dataSource).passwordEncoder(passwordEncoder);
+
         clients
                 .inMemory()
                 .withClient("clientapp").secret(passwordEncoder.encode("123456"))
@@ -32,8 +52,9 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
                 .authorities("READ_ONLY_CLIENT")
                 .scopes("read_profile_info")
                 .resourceIds("oauth2-resource")
-                .redirectUris("http://localhost:8081/login")
+                .redirectUris("http://localhost:8080/login")
                 .accessTokenValiditySeconds(120)
                 .refreshTokenValiditySeconds(240000);
     }
+
 }

@@ -36,7 +36,7 @@ public class UsersService {
     }
 
     public UserDto update(Long userId, UsersUpdate request) {
-        User user = usersMapper.taskUpdateRequest(request, userId);
+        User user = usersMapper.userUpdateRequest(request, userId);
         usersRepository.save(user);
         return usersMapper.userToUserDto(user);
     }
