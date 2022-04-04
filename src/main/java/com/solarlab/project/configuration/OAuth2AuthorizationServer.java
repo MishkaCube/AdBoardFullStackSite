@@ -17,7 +17,10 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
     }
 
     @Override
@@ -29,7 +32,7 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
                 .authorities("READ_ONLY_CLIENT")
                 .scopes("read_profile_info")
                 .resourceIds("oauth2-resource")
-                .redirectUris("http://localhost:8080/login")
+                .redirectUris("http://localhost:8081/login")
                 .accessTokenValiditySeconds(120)
                 .refreshTokenValiditySeconds(240000);
     }
