@@ -21,17 +21,34 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>8.5.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
 
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.7</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+			<version>2.6.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.6.4</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -46,6 +63,7 @@
             <groupId>org.xmlunit</groupId>
             <artifactId>xmlunit-core</artifactId>
         </dependency>
+
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -56,30 +74,19 @@
 			<artifactId>mapstruct-processor</artifactId>
 			<version>1.4.2.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>8.5.4</version>
-		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 			<version>2.6.3</version>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <version>2.6.4</version>
-            <scope>test</scope>
-        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-
 	</dependencies>
-
-
 </project>

@@ -11,15 +11,10 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
     @Column(name = "ID")
     @Id
-    @SequenceGenerator(
-            name = "users_sequence",
-            sequenceName = "users_sequence",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
     private Long id;
 
     @Column(name = "username")
@@ -30,7 +25,6 @@ public class User {
 
     @Column(name = "second_name")
     private String secondName;
-
 
     @Column(name = "user_email")
     private String email;
@@ -43,8 +37,5 @@ public class User {
 
     @Column(name = "age")
     private int age;
-
-
-    //private boolean enabled = true;
 
 }

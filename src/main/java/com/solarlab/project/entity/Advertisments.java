@@ -5,22 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Advertisments")
+@Table(name = "advertisments")
 public class Advertisments {
 
     @Column(name = "ID")
     @Id
-    @SequenceGenerator(
-            name = "ads_sequence",
-            sequenceName = "ads_sequence",
-            allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ads_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "title")
@@ -37,7 +32,6 @@ public class Advertisments {
 
     @Column(name = "src")
     @Lob
-    private Byte[] src;
-
+    private byte[] src;
 
 }
