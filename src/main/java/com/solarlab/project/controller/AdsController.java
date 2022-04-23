@@ -21,13 +21,13 @@ public class AdsController {
     private final AdsService adsService;
 
     @Operation(description = "Получение списка объявлений")
-    @GetMapping("v3/api/get_ads")
+    @GetMapping("api/get_ads")
     public ResponseEntity<Iterable<Advertisments>> getUser() {
         return ResponseEntity.ok(adsService.getAd());
     }
 
     @Operation(description = "Обновление объявления")
-    @PutMapping(path = "v3/api/insert_ads/{adsId}")
+    @PutMapping(path = "api/insert_ads/{adsId}")
     public ResponseEntity<AdsDto> updateAd(
             @PathVariable("adId") Long adsId ,
             @RequestBody(required = false) UpdateAds request) {
@@ -35,14 +35,14 @@ public class AdsController {
     }
 
     @Operation(description = "Удаление объявления")
-    @DeleteMapping( value = "/v3/api/deletead/{adsId}")
+    @DeleteMapping( value = "api/deletead/{adsId}")
     public ResponseEntity<Void> deleteAd(@PathVariable("adsId") Long adId) {
         adsService.deleteById(adId);
         return ResponseEntity.noContent().build();
     }
 
     @Operation(description = "Добавление объявления")
-    @PostMapping(value = "/v3/api/addAdvert")
+    @PostMapping(value = "api/addAdvert")
     public ResponseEntity<AdsDto> createAd(@RequestBody AdsCreateDto request) {
         return new ResponseEntity<>(adsService.create(request), HttpStatus.CREATED);
     }

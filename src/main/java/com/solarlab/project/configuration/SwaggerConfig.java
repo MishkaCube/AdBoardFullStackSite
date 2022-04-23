@@ -23,7 +23,7 @@ public class SwaggerConfig {
                                                 .password(new OAuthFlow()
                                                         .refreshUrl("/oauth/token")
                                                         .tokenUrl("/oauth/token")
-                                                        .scopes(new Scopes().addString("tasks", "scope задач"))
+                                                        .scopes(new Scopes().addString("tasks", "scope объявлений"))
                                                 ))))
                 .info(new Info().title("SolarLab ad board service")
                         .description("SolarLab project")

@@ -1,6 +1,6 @@
 package com.solarlab.project.service;
 
-import com.solarlab.project.entity.User;
+import com.solarlab.project.entity.Usr;
 import com.solarlab.project.mapper.UsersMapper;
 import com.solarlab.project.repository.UsersRepository;
 import com.solarlab.project.user.UserCreateDto;
@@ -23,10 +23,10 @@ public class UsersService {
         this.usersMapper = usersMapper;
     }
 
-    public Iterable<User> getUser() { return usersRepository.findAll(); }
+    public Iterable<Usr> getUser() { return usersRepository.findAll(); }
 
     public UserDto create(UserCreateDto request) {
-        User user = usersMapper.toUser(request);
+        Usr user = usersMapper.toUser(request);
         usersRepository.save(user);
         return usersMapper.userToUserDto(user);
     }
@@ -36,7 +36,7 @@ public class UsersService {
     }
 
     public UserDto update(Long userId, UsersUpdate request) {
-        User user = usersMapper.userUpdateRequest(request, userId);
+        Usr user = usersMapper.userUpdateRequest(request, userId);
         usersRepository.save(user);
         return usersMapper.userToUserDto(user);
     }

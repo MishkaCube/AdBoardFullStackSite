@@ -6,7 +6,6 @@ import com.solarlab.project.advertisments.UpdateAds;
 import com.solarlab.project.entity.Advertisments;
 import com.solarlab.project.mapper.AdsMapper;
 import com.solarlab.project.repository.AdsRepository;
-import com.solarlab.project.user.UsersUpdate;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
