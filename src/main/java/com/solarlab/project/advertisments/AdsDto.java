@@ -17,6 +17,6 @@ public class AdsDto {
     private String text;
     private int email;
     private String category;
-    private Byte[] src;
+    private String owner;
 
 }

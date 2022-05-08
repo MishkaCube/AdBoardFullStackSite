@@ -11,27 +11,29 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "advertisments")
-public class Advertisments {
+public class Advertisment {
 
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "text")
+    private String owner;
+
     private String text;
 
-    @Column(name = "price")
     private int price;
 
+    // add a category entity
     @Column(name = "category")
     private String category;
 
+    // image
     @Column(name = "src")
     @Lob
     private byte[] src;
+
 
 }
