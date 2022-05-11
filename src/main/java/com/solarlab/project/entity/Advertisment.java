@@ -20,6 +20,7 @@ public class Advertisment {
 
     private String title;
 
+    @JoinColumn(name = "owner")
     private String owner;
 
     private String text;
