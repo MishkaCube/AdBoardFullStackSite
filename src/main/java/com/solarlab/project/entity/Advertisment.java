@@ -13,14 +13,14 @@ import javax.persistence.*;
 @Table(name = "advertisments")
 public class Advertisment {
 
-    @Column(name = "ID")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
 
-    @JoinColumn(name = "owner")
+    @Column(name = "owner")
     private String owner;
 
     private String text;
