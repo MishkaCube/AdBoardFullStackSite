@@ -21,11 +21,9 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /** Драйвер к БД */
     @Autowired
     private DataSource dataSource;
 
-    /** Менеджер аутентификации */
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

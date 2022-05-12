@@ -41,16 +41,16 @@ public class AdsService {
     }
 
     public AdsDto update(Long adId, UpdateAds request) {
-        checkEditTaskPermission(adId);
+        checkEditAdPermission(adId);
         Advertisment advertisment = adsMapper.adsUpdate(request, adId, getCurrentUsername());
         adsRepository.save(advertisment);
         return adsMapper.adsToAds(advertisment);
     }
 
 
-    private void checkEditTaskPermission(Long adId) {
-        adsRepository.findById(adId).ifPresent(task -> {
-            if (!task.getOwner().equals(getCurrentUsername()) && !isCurrentUserAdmin()) {
+    private void checkEditAdPermission(Long adId) {
+        adsRepository.findById(adId).ifPresent(ad -> {
+            if (!ad.getOwner().equals(getCurrentUsername()) && !isCurrentUserAdmin()) {
                 throw new EditAdAccessDeniedException();
             }
         });

@@ -1,4 +1,4 @@
-package com.solarlab.project.Users;
+package com.solarlab.project.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsersDto {
-
 
     private UUID id;
     private String username;
