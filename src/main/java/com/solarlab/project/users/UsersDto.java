@@ -6,15 +6,16 @@ import java.util.UUID;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsersDto {
 
     private UUID id;
     private String username;
     private String password;
     private String email;
+    private String role;
 
 }

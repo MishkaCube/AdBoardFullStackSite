@@ -13,6 +13,8 @@ public class AdsCreateDto {
     private String text;
     private int price;
     private String category;
+    private byte[] src;
+
 
 }
 
